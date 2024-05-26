@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
-import PropTypes from 'prop-types';
 import Photo from './Photo';
 
-const PhotoList = ({ photos, query, fetchData }) => {
+const PhotoList = ({ photos, pageTitle, fetchData }) => {
+
   useEffect(() => {
-    fetchData(query);
-  }, [query, fetchData]);
+    fetchData(pageTitle);
+  }, [pageTitle, fetchData]);
 
   return (
     <div className="photo-container">
-      <h2>Results</h2>
+      <h2>{pageTitle}</h2>
       <ul>
         {photos.map(photo => (
           <Photo
@@ -22,10 +22,5 @@ const PhotoList = ({ photos, query, fetchData }) => {
   );
 };
 
-PhotoList.propTypes = {
-  photos: PropTypes.array.isRequired,
-  query: PropTypes.string.isRequired,
-  fetchData: PropTypes.func.isRequired
-};
 
 export default PhotoList;

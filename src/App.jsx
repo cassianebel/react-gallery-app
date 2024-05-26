@@ -17,19 +17,20 @@ function App() {
       console.log('Error fetching and parsing data', error);
     }
   }
+
   
   return (
     <div className="container">
-      <Search />
+      <Search fetchData={fetchData} />
       <Nav />
       <Routes>
-        <Route path="/" element={<PhotoList photos={photos} fetchData={fetchData} />}>
+        <Route path="/" >
           <Route index element={<Navigate replace to="cats" />} />
         </Route>
-        <Route path="cats" element={<PhotoList photos={photos} query="cats" fetchData={fetchData} />} />
-        <Route path="dogs" element={<PhotoList photos={photos} query="dogs" fetchData={fetchData} />} />
-        <Route path="computers" element={<PhotoList photos={photos} query="computers" fetchData={fetchData} />} />
-        <Route path="search/:query" element={<PhotoList photos={photos} fetchData={fetchData} />} />
+        <Route path="cats" element={<PhotoList photos={photos} pageTitle="Cats" fetchData={fetchData} />} />
+        <Route path="dogs" element={<PhotoList photos={photos} pageTitle="Dogs" fetchData={fetchData} />} />
+        <Route path="computers" element={<PhotoList photos={photos} pageTitle="Computers" fetchData={fetchData} />} />
+        <Route path="search/:query" element={<PhotoList photos={photos} />} />
       </Routes>
       
     </div>
