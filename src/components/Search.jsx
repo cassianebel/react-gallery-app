@@ -1,14 +1,12 @@
 import React, {useRef} from 'react'
 import {useNavigate} from 'react-router-dom';
-import PropTypes from 'prop-types'
 
-const Search = ({fetchData}) => {
+const Search = () => {
   const searchText = useRef(null);
   const redirect = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetchData(searchText.current.value);
     redirect(`/search/${searchText.current.value}`);
     e.currentTarget.reset()
   }
@@ -24,10 +22,6 @@ const Search = ({fetchData}) => {
       </button>
     </form>
   )
-}
-
-Search.propTypes = {
-  fetchData: PropTypes.func.isRequired
 }
 
 export default Search

@@ -12,11 +12,14 @@ function App() {
   const [butterflies, setButterflies] = useState([]);
   const [flowers, setFlowers] = useState([]);
   const [frogs, setFrogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async (query) => {
+    setLoading(true);
     try {
       const response = await axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`);
       setPhotos(response.data.photos.photo);
+      setLoading(false);
     } catch (error) {
       console.log('Error fetching and parsing data', error);
     }
@@ -44,7 +47,7 @@ function App() {
   
   return (
     <div className="container">
-      <Search fetchData={fetchData} />
+      <Search />
       <Nav />
       <Routes>
         <Route path="/" >
@@ -53,7 +56,7 @@ function App() {
         <Route path="butterflies" element={<PhotoList photos={butterflies} pageTitle="Butterflies" />} />
         <Route path="flowers" element={<PhotoList photos={flowers} pageTitle="Flowers" />} />
         <Route path="frogs" element={<PhotoList photos={frogs} pageTitle="Frogs" />} />
-        <Route path="search/:query" element={<PhotoList photos={photos} pageTitle="Search Results" />} />
+        <Route path="search/:query" element={<PhotoList photos={photos} pageTitle="Search Results" fetchData={fetchData} loading={loading} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       
