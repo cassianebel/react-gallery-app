@@ -13,13 +13,15 @@ function App() {
   const [computers, setComputers] = useState([]);
  
   const fetchData = async (query) => {
+    console.log(query);
     try {
       const response = await axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`);
+      console.log(response.data); // Log the response data
       setPhotos(response.data.photos.photo);
     } catch (error) {
       console.log('Error fetching and parsing data', error);
     }
-  }
+}
 
   const fetchDefaults = async () => {
     try {
@@ -52,7 +54,7 @@ function App() {
         <Route path="cats" element={<PhotoList photos={cats} pageTitle="Cats" />} />
         <Route path="dogs" element={<PhotoList photos={dogs} pageTitle="Dogs" />} />
         <Route path="computers" element={<PhotoList photos={computers} pageTitle="Computers" />} />
-        <Route path="search/:query" element={<PhotoList photos={photos} />} />
+        <Route path="search/:query" element={<PhotoList photos={photos} pageTitle="Search Results" />} />
       </Routes>
       
     </div>

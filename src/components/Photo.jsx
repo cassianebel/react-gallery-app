@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Photo = ({url}) => {
   return (
@@ -7,5 +8,9 @@ const Photo = ({url}) => {
     </li>
   )
 }
+
+Photo.propTypes = {
+  url: PropTypes.string.isRequired,
+};
 
 export default Photo
