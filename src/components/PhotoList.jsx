@@ -1,11 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Photo from './Photo';
 
-const PhotoList = ({ photos, pageTitle, fetchData }) => {
-
-  useEffect(() => {
-    fetchData(pageTitle);
-  }, [pageTitle, fetchData]);
+const PhotoList = ({ photos, pageTitle}) => {
 
   return (
     <div className="photo-container">
@@ -22,5 +19,9 @@ const PhotoList = ({ photos, pageTitle, fetchData }) => {
   );
 };
 
+PhotoList.propTypes = {
+  photos: PropTypes.array.isRequired,
+  pageTitle: PropTypes.string,
+};
 
 export default PhotoList;
