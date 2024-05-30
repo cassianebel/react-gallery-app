@@ -14,6 +14,10 @@ function App() {
   const [frogs, setFrogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  /**
+   * Fetch the photos for a search query
+   * @param {string} query 
+   */
   const fetchData = async (query) => {
     setLoading(true);
     try {
@@ -25,6 +29,9 @@ function App() {
     }
   }
 
+  /**
+   * Fetch the default photos for Butterflies, Flowers, and Frogs
+   */
   const fetchDefaults = async () => {
     try {
       const responseButterflies = await axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Butterflies&per_page=24&format=json&nojsoncallback=1`);

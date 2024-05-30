@@ -6,12 +6,19 @@ import Photo from './Photo';
 const PhotoList = ({ photos, pageTitle, fetchData, loading}) => {
   const { query } = useParams();
 
+  /**
+   * Use the query from the URL to fetch data
+   */
   useEffect(() => {
     if (query) {
       fetchData(query);
     }
   }, [query]);
 
+
+  /**
+   * Check for results to display or display a message
+   */
   let results;
   if (photos.length > 0) {
     results = photos.map(photo => (

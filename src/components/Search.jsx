@@ -5,6 +5,10 @@ const Search = () => {
   const searchText = useRef(null);
   const redirect = useNavigate();
 
+  /**
+   * Redirect to a URL that includes the search query
+   * @param {event} e 
+   */
   const handleSubmit = e => {
     e.preventDefault();
     redirect(`/search/${searchText.current.value}`);
